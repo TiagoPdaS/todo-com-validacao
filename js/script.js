@@ -77,8 +77,15 @@ form.addEventListener('submit', validator.handleSubmit);
 
 document.addEventListener('DOMContentLoaded', () => {
     const toggleLogin = document.getElementById('toggle-login');
+    const formContainer = document.querySelector('.form-container');
     const loginForm = document.getElementById('login-form');
     const loginButton = document.getElementById('login-button');
+
+    toggleLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        formContainer.classList.toggle('login-active');
+        loginForm.classList.toggle('login-active');
+    });
 
     // Alternar entre formulário de cadastro e login
     toggleLogin.addEventListener('click', (e) => {
@@ -100,5 +107,52 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             alert('Email ou senha inválidos.');
         }
+    });
+
+    toggleLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        // Add animation classes
+        if (!formContainer.classList.contains('animate__flip')) {
+            formContainer.classList.add('animate__flip');
+            loginForm.classList.add('animate__flip');
+        }
+
+        // Toggle visibility using classes
+        formContainer.classList.toggle('login-active');
+        loginForm.classList.toggle('login-active');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleLogin = document.getElementById('toggle-login');
+    const toggleRegister = document.querySelector('#login-form a'); // Link para "Criar uma conta"
+    const formContainer = document.querySelector('.form-container');
+    const loginForm = document.getElementById('login-form');
+
+    const toggleForms = (fromForm, toForm) => {
+        // Garante que as classes de animação sejam removidas antes de adicionar novamente
+        fromForm.classList.remove('animate__flip');
+        toForm.classList.remove('animate__flip');
+
+        // Adiciona a animação de flip
+        setTimeout(() => {
+            fromForm.classList.add('animate__flip');
+            toForm.classList.add('animate__flip');
+
+            // Alterna os formulários
+            fromForm.classList.toggle('login-active');
+            toForm.classList.toggle('login-active');
+        }, 50); // Pequeno atraso para garantir que a animação seja aplicada corretamente
+    };
+
+    toggleLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleForms(formContainer, loginForm); // Alterna para o formulário de login
+    });
+
+    toggleRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleForms(loginForm, formContainer); // Alterna para o formulário de criar conta
     });
 });

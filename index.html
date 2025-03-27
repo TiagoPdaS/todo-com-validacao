@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validador de Formularios</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.ico"> <!-- Adicionado favicon -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 </head>
 
 <body>
@@ -16,38 +20,40 @@
             <img src="images/logo.png" alt="">
         </div>
         <div class="rightside">
-            <h1 class="titulo-login">Crie uma Conta</h1>
+            <div class="form-container animate__animated">
+                <h1 class="titulo-login">Crie uma Conta</h1>
 
-            <form method="GET" action="cadastro.html" class="validator">
-                <label for="">
-                    Seu Nome: <br>
-                    <input type="text" name="nome" data-rules="required">
-                </label>
+                <form method="GET" action="cadastro.html" class="validator">
+                    <label for="">
+                        Seu Nome: <br>
+                        <input type="text" name="nome" data-rules="required">
+                    </label>
 
-                <label for="">
-                    Seu Email: <br>
-                    <input type="text" name="email" id="email" data-rules="required|email">
-                </label>
+                    <label for="">
+                        Seu Email: <br>
+                        <input type="text" name="email" id="email" data-rules="required|email">
+                    </label>
 
-                <label for="">
-                    Sua Senha: <br>
-                    <input type="password" name="password" id="password" data-rules="required|min=6" autocomplete="current-password"> <!-- Adicionado autocomplete -->
-                </label>
+                    <label for="">
+                        Sua Senha: <br>
+                        <input type="password" name="password" id="password" data-rules="required|min=6" autocomplete="current-password"> <!-- Adicionado autocomplete -->
+                    </label>
 
-                <label for="">
-                    Confirme sua Senha: <br>
-                    <input type="password" name="confirm_password" id="confirm_password" data-rules="required|match=password">
-                </label>
+                    <label for="">
+                        Confirme sua Senha: <br>
+                        <input type="password" name="confirm_password" id="confirm_password" data-rules="required|match=password">
+                    </label>
 
-                <button class="btn-cadastro" type="submit">Cadastrar</button>
-            </form>
+                    <button class="btn-cadastro" type="submit">Cadastrar</button>
+                </form>
 
-            <div>
-                Ja tem uma Conta? 
-                <a href="#" id="toggle-login">Faça Login</a>
+                <div>
+                    Ja tem uma Conta? 
+                    <a href="#" id="toggle-login">Faça Login</a>
+                </div>
             </div>
 
-            <div id="login-form" style="display: none;">
+            <div id="login-form" class="animate__animated" style="display: none;">
                 <h1 class="titulo-login">Login</h1>
                 <form id="login" class="validator">
                     <label for="">
@@ -61,12 +67,15 @@
                     </label>
 
                     <button class="btn-cadastro" type="button" id="login-button">Entrar</button>
+
+            
+
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

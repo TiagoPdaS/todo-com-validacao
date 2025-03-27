@@ -12,10 +12,13 @@ body {
 
 .screen {
     display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
     height: 100vh;
     width: 100%;
     padding: 30px; /* Adicionado padding geral */
     gap: 30px; /* Espaço entre as colunas */
+    overflow: hidden; /* Garante que nada seja cortado */
 }
 
 .left-column {
@@ -54,13 +57,16 @@ body {
     max-width: 400px;
     height: auto;
     border-radius: 10px 150px;
-    
 }
 
 .rightside{
-    width:600px;
-    background-color: #f4f4f4;
-    padding: 50px;
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Centraliza o formulário horizontalmente */
+    align-items: center; /* Centraliza o formulário verticalmente */
+    position: relative; /* To enable positioning of child elements */
+    overflow: visible; /* Permite que o conteúdo seja exibido completamente */
+    height: auto; /* Ajusta a altura automaticamente */
 }
 
 .rightside label{
@@ -261,4 +267,39 @@ body {
 
 .calendar-table ul.task-list li {
     margin: 2px 0;
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateY(0deg); /* Inicialmente sem rotação */
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.6s ease-in-out, opacity 0.6s ease-in-out; /* Suaviza a rotação e a opacidade */
+    opacity: 1; /* Visível por padrão */
+    z-index: 1; /* Garante que o formulário ativo fique acima */
+    backface-visibility: hidden; /* Esconde o verso durante a rotação */
+    overflow: visible; /* Garante que o conteúdo interno não seja cortado */
+}
+
+.form-container.login-active {
+    transform: translate(-50%, -50%) rotateY(180deg); /* Roda para fora */
+    opacity: 0; /* Esconde o formulário de "Criar Conta" */
+    pointer-events: none; /* Desativa interações */
+    z-index: 0; /* Move para trás */
+}
+
+#login-form {
+    transform: translate(-50%, -50%) rotateY(-180deg); /* Inicialmente fora da tela */
+    opacity: 0; /* Esconde o formulário de login inicialmente */
+    pointer-events: none; /* Desativa interações */
+    z-index: 0; /* Move para trás */
+}
+
+#login-form.login-active {
+    transform: translate(-50%, -50%) rotateY(0deg); /* Roda para aparecer */
+    opacity: 1; /* Mostra o formulário de login */
+    pointer-events: auto; /* Ativa interações */
+    z-index: 1; /* Move para frente */
 }
