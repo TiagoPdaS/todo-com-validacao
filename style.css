@@ -1,0 +1,264 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.screen {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    padding: 30px; /* Adicionado padding geral */
+    gap: 30px; /* Espaço entre as colunas */
+}
+
+.left-column {
+    flex: 1;
+    background-color: #f4f4f4;
+    padding: 30px; /* Adicionado padding interno */
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    border-radius: 10px; /* Bordas arredondadas */
+}
+
+.right-column {
+    flex: 1;
+    padding: 30px; /* Adicionado padding interno */
+    overflow-y: auto;
+    border-radius: 10px; /* Bordas arredondadas */
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
+
+.titulo-login{
+    font-size: 35px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.leftside{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftside img{
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px 150px;
+    
+}
+
+.rightside{
+    width:600px;
+    background-color: #f4f4f4;
+    padding: 50px;
+}
+
+.rightside label{
+    display: block;
+    margin-bottom: 20px;
+}
+
+.rightside input{
+    width: 100%;
+    border: 1px solid #999;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    outline:0;
+}
+
+.rightside input:focus {
+    border-color: #37474F;
+    box-shadow: 0px 0px 5px rgba(55, 71, 79, 0.5);
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.btn-cadastro {
+    background-color: #B0BEC5;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid #37474F;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+}
+
+.btn-cadastro:hover {
+    background-color: #37474F;
+    border: 4px solid #263238; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adiciona um sombreado */
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+#clock {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#calendar-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#task-manager {
+    margin-top: 20px;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#task-list li {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#task-list li:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#task-list li.completed {
+    background-color: #e0e0e0; /* Cinza claro para tarefas concluídas */
+    text-decoration: line-through; /* Risca o texto */
+    color: #6c757d; /* Texto cinza */
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-edit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.btn-delete {
+    background-color: #FF5252;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #D32F2F;
+}
+
+.btn-checklist {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn-checklist:hover {
+    background-color: #218838;
+}
+
+#task-list button {
+    background-color: #FF5252;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#task-list button:hover {
+    background-color: #D32F2F;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.calendar-table th, .calendar-table td {
+    border: 1px solid #ddd;
+    text-align: center;
+    padding: 10px;
+    width: 14.28%; /* Dividido igualmente para 7 dias */
+}
+
+.calendar-table td {
+    height: 80px;
+    vertical-align: top;
+    border-radius: 5px; /* Bordas arredondadas */
+}
+
+.calendar-table td:hover {
+    background-color: #e0f7fa; /* Cor de destaque ao passar o mouse */
+    cursor: pointer;
+}
+
+.calendar-table ul.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    font-size: 12px;
+    color: #fff;
+}
+
+.calendar-table ul.task-list li {
+    margin: 2px 0;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Formularios</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="images/favicon.ico"> <!-- Adicionado favicon -->
+</head>
+
+<body>
+
+    <div class="screen">
+        <div class="leftside">
+            <img src="images/logo.png" alt="">
+        </div>
+        <div class="rightside">
+            <h1 class="titulo-login">Crie uma Conta</h1>
+
+            <form method="GET" action="cadastro.html" class="validator">
+                <label for="">
+                    Seu Nome: <br>
+                    <input type="text" name="nome" data-rules="required">
+                </label>
+
+                <label for="">
+                    Seu Email: <br>
+                    <input type="text" name="email" id="email" data-rules="required|email">
+                </label>
+
+                <label for="">
+                    Sua Senha: <br>
+                    <input type="password" name="password" id="password" data-rules="required|min=6" autocomplete="current-password"> <!-- Adicionado autocomplete -->
+                </label>
+
+                <label for="">
+                    Confirme sua Senha: <br>
+                    <input type="password" name="confirm_password" id="confirm_password" data-rules="required|match=password">
+                </label>
+
+                <button class="btn-cadastro" type="submit">Cadastrar</button>
+            </form>
+
+            <div>
+                Ja tem uma Conta? 
+                <a href="#" id="toggle-login">Faça Login</a>
+            </div>
+
+            <div id="login-form" style="display: none;">
+                <h1 class="titulo-login">Login</h1>
+                <form id="login" class="validator">
+                    <label for="">
+                        Seu Email: <br>
+                        <input type="text" name="login_email" id="login_email" data-rules="required|email">
+                    </label>
+
+                    <label for="">
+                        Sua Senha: <br>
+                        <input type="password" name="login_password" id="login_password" data-rules="required">
+                    </label>
+
+                    <button class="btn-cadastro" type="button" id="login-button">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

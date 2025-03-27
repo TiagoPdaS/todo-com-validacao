@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="screen">
+        <div class="right-column">
+            <div class="header">
+                <h1 class="titulo-login">Perfil do Usuário</h1>
+                <div id="clock"></div>
+            </div>
+
+            <div id="profile-info">
+                <!-- Informações do perfil serão exibidas aqui -->
+            </div>
+
+            <div id="task-manager">
+                <h2>Gerenciar Tarefas</h2>
+                <form id="task-form">
+                    <label for="task-title">Título:</label>
+                    <input type="text" id="task-title" placeholder="Título da tarefa" required>
+                    <label for="task-desc">Descrição:</label>
+                    <textarea id="task-desc" placeholder="Descrição da tarefa" required></textarea>
+                    <label for="task-priority">Prioridade:</label>
+                    <select id="task-priority" required>
+                        <option value="low">Baixa</option>
+                        <option value="medium">Média</option>
+                        <option value="high">Alta</option>
+                    </select>
+                    <button type="submit" class="btn-cadastro">Adicionar Tarefa</button>
+                </form>
+                <ul id="task-list"></ul>
+            </div>
+
+            <a href="index.html" class="btn-cadastro">Sair</a>
+        </div>
+    </div>
+
+    <script src="perfil.js"></script>
+</body>
+
+</html>
