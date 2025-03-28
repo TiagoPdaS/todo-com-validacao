@@ -12,7 +12,7 @@
     <div class="screen">
         <div class="right-column">
             <div class="header">
-                <h1 class="titulo-login">Perfil do Usuário</h1>
+                <h1 id="welcome-message">Seja bem-vindo, <span id="user-name"></span>!</h1>
                 <div id="clock"></div>
             </div>
 
@@ -35,6 +35,23 @@
                     </select>
                     <button type="submit" class="btn-cadastro">Adicionar Tarefa</button>
                 </form>
+
+                <div id="task-filters">
+                    <h3>Filtrar Tarefas</h3>
+                    <label>
+                        <input type="radio" name="filter" value="recent" checked> Mais Recentes
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="completed"> Tarefas Prontas
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="priority-high"> Prioridade (Alta para Baixa)
+                    </label>
+                    <label>
+                        <input type="radio" name="filter" value="priority-low"> Prioridade (Baixa para Alta)
+                    </label>
+                </div>
+
                 <ul id="task-list"></ul>
             </div>
 

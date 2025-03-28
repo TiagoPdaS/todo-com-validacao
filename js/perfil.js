@@ -1,17 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const userNameElement = document.getElementById('user-name');
     const profileInfoDiv = document.getElementById('profile-info');
     const clockDiv = document.getElementById('clock');
     const taskForm = document.getElementById('task-form');
     const taskList = document.getElementById('task-list');
+    const taskFilters = document.getElementById('task-filters');
+    const filterOptions = taskFilters.querySelectorAll('input[name="filter"]');
 
     // Exibe informações do usuário
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
-        profileInfoDiv.innerHTML = `
-            <p><strong>Nome:</strong> ${user.nome}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-        `;
+        userNameElement.textContent = user.nome || 'Usuário'; // Exibe o nome ou "Usuário" como fallback
+        profileInfoDiv.innerHTML = `<p><strong>Email:</strong> ${user.email}</p>`;
     } else {
+        userNameElement.textContent = 'Usuário não encontrado';
         profileInfoDiv.innerHTML = '<p>Nenhum usuário logado.</p>';
     }
 
@@ -30,9 +32,45 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
+    function getPriorityColor(priority) {
+        switch (priority) {
+            case 'low':
+                return '#d4edda'; // Verde claro
+            case 'medium':
+                return '#fff3cd'; // Amarelo claro
+            case 'high':
+                return '#f8d7da'; // Vermelho claro
+            default:
+                return '#ffffff'; // Branco
+        }
+    }
+
     function renderTasks() {
         taskList.innerHTML = '';
-        tasks.forEach((task, index) => {
+
+        // Obtém a opção de filtro selecionada
+        const selectedFilter = [...filterOptions].find(option => option.checked).value;
+
+        // Filtra e ordena as tarefas com base no filtro selecionado
+        let filteredTasks = [...tasks];
+        if (selectedFilter === 'recent') {
+            filteredTasks = filteredTasks.reverse(); // Mais recentes primeiro
+        } else if (selectedFilter === 'completed') {
+            filteredTasks = filteredTasks.filter(task => task.completed); // Apenas tarefas concluídas
+        } else if (selectedFilter === 'priority-high') {
+            filteredTasks.sort((a, b) => {
+                const priorityOrder = { high: 3, medium: 2, low: 1 };
+                return priorityOrder[b.priority] - priorityOrder[a.priority]; // Alta para baixa
+            });
+        } else if (selectedFilter === 'priority-low') {
+            filteredTasks.sort((a, b) => {
+                const priorityOrder = { high: 3, medium: 2, low: 1 };
+                return priorityOrder[a.priority] - priorityOrder[b.priority]; // Baixa para alta
+            });
+        }
+
+        // Renderiza as tarefas filtradas
+        filteredTasks.forEach((task, index) => {
             const li = document.createElement('li');
             li.style.backgroundColor = getPriorityColor(task.priority);
 
@@ -40,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             taskContent.className = 'task-content';
 
             if (task.editing) {
-                // Campos editáveis
                 taskContent.innerHTML = `
                     <input type="text" class="edit-title" value="${task.title}">
                     <textarea class="edit-desc">${task.desc}</textarea>
@@ -51,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     </select>
                 `;
             } else {
-                // Exibição normal
                 taskContent.innerHTML = `
                     <strong>${task.title}</strong>
                     <p>${task.desc}</p>
@@ -66,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const actions = document.createElement('div');
             actions.className = 'task-actions';
 
-            // Botão de checklist
             const checklistButton = document.createElement('button');
             checklistButton.textContent = task.completed ? 'Desmarcar' : 'Concluir';
             checklistButton.className = 'btn-checklist';
@@ -77,7 +112,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             if (task.editing) {
-                // Botão de salvar
                 const saveButton = document.createElement('button');
                 saveButton.textContent = 'Salvar';
                 saveButton.className = 'btn-save';
@@ -97,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 actions.appendChild(saveButton);
             } else {
-                // Botão de editar
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Editar';
                 editButton.className = 'btn-edit';
@@ -109,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 actions.appendChild(editButton);
             }
 
-            // Botão de excluir
             const deleteButton = document.createElement('button');
             deleteButton.textContent = 'Excluir';
             deleteButton.className = 'btn-delete';
@@ -128,19 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function getPriorityColor(priority) {
-        switch (priority) {
-            case 'low':
-                return '#d4edda'; // Verde claro
-            case 'medium':
-                return '#fff3cd'; // Amarelo claro
-            case 'high':
-                return '#f8d7da'; // Vermelho claro
-            default:
-                return '#ffffff'; // Branco
-        }
-    }
-
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const title = document.getElementById('task-title').value;
@@ -151,6 +170,11 @@ document.addEventListener('DOMContentLoaded', () => {
         saveTasks();
         renderTasks();
         taskForm.reset();
+    });
+
+    // Atualiza a lista de tarefas ao alterar o filtro
+    filterOptions.forEach(option => {
+        option.addEventListener('change', renderTasks);
     });
 
     renderTasks();
