@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validador de Formularios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bungee+Tint&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.ico"> <!-- Adicionado favicon -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
         </div>
         <div class="rightside">
             <div class="form-container animate__animated">
-                <h1 class="titulo-login">Crie uma Conta</h1>
+                <h1 class="titulo-login"> Crie uma Conta</h1>
 
                 <form method="GET" action="cadastro.html" class="validator">
                     <label for="">
@@ -36,20 +36,24 @@
 
                     <label for="">
                         Sua Senha: <br>
-                        <input type="password" name="password" id="password" data-rules="required|min=6" autocomplete="current-password"> <!-- Adicionado autocomplete -->
+                        <input type="password" name="password" id="password" data-rules="required|min=6"
+                            autocomplete="current-password"> <!-- Adicionado autocomplete -->
                     </label>
 
                     <label for="">
                         Confirme sua Senha: <br>
-                        <input type="password" name="confirm_password" id="confirm_password" data-rules="required|match=password">
+                        <input type="password" name="confirm_password" id="confirm_password"
+                            data-rules="required|match=password">
                     </label>
 
                     <button class="btn-cadastro" type="submit">Cadastrar</button>
                 </form>
 
                 <div>
-                    Ja tem uma Conta? 
-                    <a href="#" id="toggle-login">Faça Login</a>
+                    Ja tem uma Conta? <br><br>
+                    <a href="#" id="toggle-login" class="btn-login">
+                        <span1>Faça seu Login</span1>
+                    </a>
                 </div>
             </div>
 
@@ -68,7 +72,7 @@
 
                     <button class="btn-cadastro" type="button" id="login-button">Entrar</button>
 
-            
+
 
                 </form>
             </div>
